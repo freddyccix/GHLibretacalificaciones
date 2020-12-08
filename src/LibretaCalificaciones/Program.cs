@@ -14,12 +14,12 @@ namespace LibretaCalificaciones
         static void Main(string[] args)
         {
             //Dependencia
-            Libreta libreta = new Libreta("Libreta de Freddy");//Instanciar
+            var libreta = new Libreta("Libreta de Freddy");//Instanciar
             libreta.AgregarCalificacion(10.8);
             libreta.AgregarCalificacion(20.8);
             libreta.AgregarCalificacion(12.8);
-
-
+            
+            
             libreta.MostrarEstadisticas();
 
             //Comentario

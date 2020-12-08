@@ -3,42 +3,51 @@ using System.Collections.Generic;
 
 namespace LibretaCalificaciones
 {
-    class Libreta
+    public class Libreta
     {
-        
         private List<double> calificaciones;//Campo
         private string nombre;
+        // private double resultado = 0.0;
+        
+
         public Libreta(string nombre)
         {
             this.nombre = nombre;
-            calificaciones = new List<double>();
+            this.calificaciones = new List<double>();
         }
         // API
-        
-        public void MostrarEstadisticas()
+
+        public Estadistica ObtenerEstadisticas()
         {
-            var resultado = 0.0;
-            var promedio = 0.0;
-            var notaMaxima = double.MinValue;
-            var notaMinima = double.MaxValue;
+
+            var resultado  = new Estadistica();
+
+            resultado.Promedio = 0.0;
+            resultado.Maximo = double.MinValue;
+            resultado.Minimo = double.MaxValue;
+
             foreach (var item in calificaciones)
             {
-                notaMaxima = Math.Max(notaMaxima, item);
-                notaMinima = Math.Min(notaMinima, item);
-                resultado += item;
+                resultado.Maximo = Math.Max(resultado.Maximo, item);
+                resultado.Minimo = Math.Min(resultado.Minimo, item);
+                resultado.Promedio += item;
             }
-            promedio = resultado / calificaciones.Count;
+            resultado.Promedio = resultado.Promedio / calificaciones.Count;
             //var resultado = variable1+variable2;
+            return resultado;
+        }
+        public void MostrarEstadisticas()
+        {
             
-            Console.WriteLine($"El nombre de la libreta es: {nombre}");
-            Console.WriteLine($"El resultado de la suma es: {resultado:N1}");
-            Console.WriteLine($"El promedio es: {promedio:N1}");
-            Console.WriteLine($"La nota máxima es: {notaMaxima:N1}");
-            Console.WriteLine($"La nota mínima es: {notaMinima:N1}");
+            // Console.WriteLine($"El nombre de la libreta es: {nombre}");
+            // Console.WriteLine($"El resultado de la suma es: {resultado:N1}");
+            // Console.WriteLine($"El promedio es: {promedio:N1}");
+            // Console.WriteLine($"La nota máxima es: {notaMaxima:N1}");
+            // Console.WriteLine($"La nota mínima es: {notaMinima:N1}");
         }
         public void AgregarCalificacion(double calificacion)
         {
-            //Lógica
+            //Lógica >0<100
             calificaciones.Add(calificacion);
 
 
